@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 
 // create a component
-export default function Results() {
+export default function Profile() {
   return (
     <View style={styles.container}>
       <Text>Resultados</Text>

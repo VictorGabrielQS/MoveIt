@@ -10,7 +10,7 @@ export default function Layout() {
       headerTintColor: "#000"
     }}
     >
-      <Stack.Screen name="index" options={{ title : 'Home' }} />
+      <Stack.Screen name="index" options={{ title : 'Home' , headerShown : false }} />
       <Stack.Screen name="profile" options={{ title : 'Profile' }} />
       <Stack.Screen name="user/[id]" options={{ title : 'Usuario' }} />
       <Stack.Screen name="(tabs)" options={{headerShown: false}}/>

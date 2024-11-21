@@ -34,13 +34,13 @@ options={{
 
 
 <Tabs.Screen 
-name="results" 
+name="profile" 
 options={{
   headerShown : false, 
-  title: "Results",
+  title: "Profile",
   tabBarIcon: ({ focused , color ,size}) => {
     if (focused) {
-      return <FontAwesome name="book" color={color} size={size} />
+      return <FontAwesome name="user" color={color} size={size} />
     }
     return <FontAwesome name="book" color={color} size={size} />
   }
