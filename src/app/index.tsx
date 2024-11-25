@@ -1,44 +1,124 @@
-//Pagina Home
-
 import { Link, router } from 'expo-router';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import Avatar from './components/Avatar';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'; 
+import Card_1 from './components/Card_1';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 
 const App = () => {
+  // Nome do Usuario
+  let nome = "Victor Gabriel";
+  let lastDays = 4
+  const dayWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"][new Date().getDay()];
 
-  //Nome do Usuario
-  let nome = "Victor"
-
-  function handleNavigate( ) {
+  function handleNavigate() {
     {/* @ts-ignore */}
-    router.replace('dashboard')
+    router.replace('dashboard');
   }
-  
+
+  function notifications() {
+    alert("Notificações ⚙️")
+  }
+
   return (
     <View style={styles.container}>
-        <Avatar
-        name="Null"
-        greeting="Bem vindo!"
-        imageUrl="https://nanostack.io/_next/image?url=https%3A%2F%2Fnanostack.s3.ap-south-1.amazonaws.com%2F1708453575985Group%20460.png&w=640&q=75"
-        size = {30}
-        style={{
-           container: { backgroundColor: '#e0f7fa', padding: 15 },
-          avatar: { borderColor: '#00796b', borderWidth: 1 },
-          greeting: { color: '#00796b' , fontSize: 12 },
-          name: { color: '#004d40', fontWeight: 'bold' },
-        }}
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.title}>Bem Vindo De Volta</Text>
+          <Text style={styles.title_2}>{nome}</Text>
+        </View>
+        
+        <TouchableOpacity onPress={notifications} style={styles.notification}>
+          <Icon name="notifications-outline" size={24} color="#000"/>
+        </TouchableOpacity>
+      </View>
 
-      />
-     
+      <Card_1>
+
+      <View style={styles.headerContainer}>
+      <Text> Essa Semana </Text>
+        <Text> {lastDays}/7 Dias </Text>
+      </View>
+
+      <View>
+
+
+      </View>
+
+      </Card_1>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container :{
+
+  container: {
     flex: 1,
-    backgroundColor : "#D6DFE2"
+    width: '100%',
+    height: '100%',
+    backgroundColor:"#fff",
+    color:"#000"
+    
   },
+  
+
+
+  headerContainer : {
+   flexDirection: 'row',
+    justifyContent: 'space-between',
+    
+  },
+
+  weekContainer: {
+    alignContent: 'center',
+    textAlign: 'center',
+    backgroundColor: '#000',
+    width: 50,
+    height: 70,
+    borderWidth: 1,
+    borderRadius: 5
+  },
+
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    padding: 20,
+    marginBottom: 10,
+    gap:10
+  },
+
+  title: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: "#ADA4A5",
+    paddingBottom: 3
+  },
+
+  title_2: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  weekText:{
+    color:"#ffff"
+  },
+
+
+
+
+  notification: {
+    backgroundColor: "#F7F8F8",
+    borderRadius: 5,
+    padding: 7,
+    marginRight: 15
+  },
+
+  icon: {
+    alignSelf: "center", 
+  }
+
 });
 
 export default App;
