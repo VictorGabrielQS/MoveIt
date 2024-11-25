@@ -1,15 +1,30 @@
 import { Link, router } from 'expo-router';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'; 
-import Card_1 from './components/Card_1';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Card from './components/home/Card';
+import CardWeek from './components/home/Card_Week';
+
 
 
 const App = () => {
+  
   // Nome do Usuario
   let nome = "Victor Gabriel";
-  let lastDays = 4
-  const dayWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"][new Date().getDay()];
+  
+  let days = [
+    { day: "Seg", concluido: true },
+    { day: "Ter", concluido: true },
+    { day: "Qua", concluido: true },
+    { day: "Qui", concluido: false },
+    { day: "Sex", concluido: true },
+    { day: "Sab", concluido: false },
+    { day: "Dom", concluido: false },
+  ];
+
+  let hoursTotal = 0
+
+  const daysCompleted = days.filter(day => day.concluido).length;
+
 
   function handleNavigate() {
     {/* @ts-ignore */}
@@ -22,6 +37,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>Bem Vindo De Volta</Text>
@@ -33,19 +49,43 @@ const App = () => {
         </TouchableOpacity>
       </View>
 
-      <Card_1>
 
+    //Card Week Days 
+
+      <Card>
       <View style={styles.headerContainer}>
-      <Text> Essa Semana </Text>
-        <Text> {lastDays}/7 Dias </Text>
+      <Text style={styles.title_HeaderContainer}> Essa Semana </Text>
+        <Text> {daysCompleted} /7 Dias </Text>
       </View>
 
+      <View style={styles.container_Week}>
+      
+      {days.map((item, index) => (
+        <CardWeek key={index} day={item.day} concluido={item.concluido} />
+      ))}
+
+      </View>
+      
+
+      </Card>
+
+
+      <Card>
+      <View style={styles.headerContainer}>
+      <Text style={styles.title_HeaderContainer}> Horas </Text>
+      <Text> {hoursTotal} Horas</Text>
+      </View>
+
+      </Card>
+
+      
+
+
+       <View>
+       </View>
       <View>
-
-
       </View>
-
-      </Card_1>
+      
 
     </View>
   );
@@ -61,12 +101,11 @@ const styles = StyleSheet.create({
     color:"#000"
     
   },
-  
 
-
-  headerContainer : {
+  headerContainer: {
    flexDirection: 'row',
-    justifyContent: 'space-between',
+   justifyContent: 'space-between',
+   paddingBottom: 30
     
   },
 
@@ -80,6 +119,10 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
 
+  container_Week: {
+    flexDirection: 'row',
+  },
+  
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between', 
@@ -100,13 +143,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  
+  title_HeaderContainer: {
+    fontSize: 18,
+    fontWeight: '500',
+  },
 
   weekText:{
     color:"#ffff"
   },
-
-
-
 
   notification: {
     backgroundColor: "#F7F8F8",
